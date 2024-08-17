@@ -21,8 +21,6 @@ int iniciar_servidor(void)
 	// Creamos el socket de escucha del servidor
 	int err;
 
-	err = getaddrinfo(NULL, "4444", &hints, &servinfo);
-
 	socket_servidor= socket(servinfo->ai_family,
 	                        servinfo->ai_socktype,
 	                        servinfo->ai_protocol);
