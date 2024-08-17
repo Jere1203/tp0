@@ -20,7 +20,7 @@ int iniciar_servidor(void)
 
 	// Creamos el socket de escucha del servidor
 	int err;
-
+//a
 
 	err = getaddrinfo(NULL, "4444", &hints, &servinfo);
 
