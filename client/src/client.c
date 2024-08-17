@@ -59,7 +59,7 @@ int main(void)
 t_log* iniciar_logger(void)
 {
 	t_log* nuevo_logger;
-	nuevo_logger = log_create("../tp0.log","TP0",true,LOG_LEVEL_INFO);
+	nuevo_logger = log_create("tp0.log","TP0",true,LOG_LEVEL_INFO);
 	if(nuevo_logger == NULL) exit(1);
 	return nuevo_logger;
 	free(nuevo_logger);
@@ -68,7 +68,7 @@ t_log* iniciar_logger(void)
 t_config* iniciar_config(void)
 {
 	t_config* nuevo_config;
-	nuevo_config = config_create("../cliente.config");
+	nuevo_config = config_create("cliente.config");
 	if(nuevo_config == NULL)
 	{
 		printf("No se pudo acceder al config!\n");
@@ -81,18 +81,16 @@ t_config* iniciar_config(void)
 void leer_consola(t_log* logger)
 {
 	char* leido;
-
 	// La primera te la dejo de yapa
 	leido = readline("> ");
-
 	// El resto, las vamos leyendo y logueando hasta recibir un string vacío
 	while(strcmp(leido,"") != 0)
 	{
+		add_history(leido);
 		log_info(logger, leido);
 		free(leido);
 		leido = readline("> ");
 	}
-
 	free(leido);
 	// ¡No te olvides de liberar las lineas antes de regresar!
 }
@@ -103,15 +101,20 @@ void paquete(int conexion)
 	char* leido;
 	t_paquete* paquete;
 
+	paquete = crear_paquete();
+
+	leido = readline("> ");
+
 	// Leemos y esta vez agregamos las lineas al paquete
 		while(strcmp(leido,"") != 0)
 	{
+		add_history(leido);
 		agregar_a_paquete(paquete, leido, sizeof(leido));
 		free(leido);
 		leido = readline("> ");
 	}
+	enviar_paquete(paquete, conexion);
 	// ¡No te olvides de liberar las líneas y el paquete antes de regresar!
-	free(leido);
 	free(paquete);	
 }
 
