@@ -35,7 +35,7 @@ int crear_conexion(char *ip, char* puerto)
                          server_info->ai_socktype,
                          server_info->ai_protocol);
 	// Ahora que tenemos el socket, vamos a conectarlo
-	err = connect(fd_conexion, server_info->ai_addr, server_info->ai_addrlen);
+	err = connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen);
 
 	freeaddrinfo(server_info);
 
