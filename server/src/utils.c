@@ -8,6 +8,7 @@ int iniciar_servidor(void)
 	//assert(!"no implementado!");
 
 	int socket_servidor;
+	int err;
 
 	struct addrinfo hints, *servinfo, *p;
 
@@ -16,10 +17,9 @@ int iniciar_servidor(void)
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 
-	getaddrinfo(NULL, PUERTO, &hints, &servinfo);
+	err = getaddrinfo(NULL, PUERTO, &hints, &servinfo);
 
 	// Creamos el socket de escucha del servidor
-	int err;
 
 	socket_servidor= socket(servinfo->ai_family,
 	                        servinfo->ai_socktype,
