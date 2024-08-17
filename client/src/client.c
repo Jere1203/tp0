@@ -59,7 +59,7 @@ int main(void)
 t_log* iniciar_logger(void)
 {
 	t_log* nuevo_logger;
-	nuevo_logger = log_create("tp0.log","TP0",true,LOG_LEVEL_INFO);
+	nuevo_logger = log_create("/home/utnso/Desktop/tp0/client/tp0.log","TP0",true,LOG_LEVEL_INFO);
 	if(nuevo_logger == NULL) exit(1);
 	return nuevo_logger;
 	free(nuevo_logger);
@@ -68,7 +68,7 @@ t_log* iniciar_logger(void)
 t_config* iniciar_config(void)
 {
 	t_config* nuevo_config;
-	nuevo_config = config_create("cliente.config");
+	nuevo_config = config_create("/home/utnso/Desktop/tp0/client/cliente.config");
 	if(nuevo_config == NULL)
 	{
 		printf("No se pudo acceder al config!\n");
